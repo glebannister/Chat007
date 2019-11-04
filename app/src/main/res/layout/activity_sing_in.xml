@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/singInImageView"
+        android:layout_width="357dp"
+        android:layout_height="183dp"
+        android:onClick="changeAgent"
+        app:srcCompat="@drawable/spectr" />
+
+        <ImageView
+            android:id="@+id/singInImageView2"
+            android:layout_width="357dp"
+            android:layout_height="183dp"
+            android:alpha="0"
+            app:srcCompat="@drawable/stetham"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:hint="Your Email"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:hint="Your Password"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/confirmPasswordEditText"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:hint="Your Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/singInButton"
+        android:layout_marginStart="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SING UP"/>
+
+    <TextView
+        android:id="@+id/toggleTextView"
+        android:clickable="true"
+        android:onClick="changeSingInUp"
+        android:text="Click To Log In"
+        android:layout_marginStart="115dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+</LinearLayout>

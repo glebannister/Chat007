@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/text01"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:text="Central Intelligence Agency and MI6"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/spectr"
+        android:layout_marginTop="5dp"
+        app:srcCompat="@drawable/spectr007"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
