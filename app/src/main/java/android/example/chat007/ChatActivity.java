@@ -179,7 +179,6 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 SecretMessage secretMessage = dataSnapshot.getValue(SecretMessage.class);
-
                 if
                 (secretMessage.getSender()!= null && secretMessage.getSender().equals(auth.getCurrentUser().getUid())&&
                 secretMessage.getRecipient().equals(recipientUserId) || secretMessage.getRecipient()!= null

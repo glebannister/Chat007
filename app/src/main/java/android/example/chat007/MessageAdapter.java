@@ -30,11 +30,9 @@ public class MessageAdapter extends ArrayAdapter {
         boolean isText = secretMessage.getMessageUrl() == null;
 
         if (isText){
-
             textTextView.setVisibility(View.VISIBLE);
             photoImageView.setVisibility(View.GONE);
             textTextView.setText(secretMessage.getText());
-
         } else {
             textTextView.setVisibility(View.GONE);
             photoImageView.setVisibility(View.VISIBLE);

@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -42,7 +44,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int position) {
         Users currentUser = usersArrayList.get(position);
-        userViewHolder.avatarImageView.setImageResource(currentUser.getAvatarResource());
+        userViewHolder.avatarImageView.setImageResource(R.drawable.ic_person_black_24dp);
         userViewHolder.nameTextViewItem.setText(currentUser.getName());
     }
 

@@ -10,6 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".InfoActivity"
+            android:parentActivityName=".AgenciesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AgenciesActivity"/>
+        </activity>
+        <activity android:name=".AgenciesActivity"
+            android:parentActivityName=".UserListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserListActivity"/>
+        </activity>
         <activity android:name=".LoadScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AgentProfileActivity" />
+        <activity
+            android:name=".AgentProfileActivity"
+            android:parentActivityName=".UserListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserListActivity" />
+        </activity>
         <activity
             android:name=".AllChatActivity"
             android:parentActivityName=".UserListActivity">
@@ -33,8 +51,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".UserListActivity" />
         </activity>
-        <activity android:name=".SignInActivity">
-        </activity>
+        <activity android:name=".SignInActivity" />
     </application>
 
 </manifest>

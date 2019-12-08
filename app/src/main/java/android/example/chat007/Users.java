@@ -1,10 +1,13 @@
 package android.example.chat007;
 
+import android.net.Uri;
+
 public class Users {
     private String name;
     private String email;
     private String id;
     private int avatarResource;
+
 
 
     public Users(String name, String email, String id, String sender, String recipient, int avatarResource) {
@@ -49,4 +52,5 @@ public class Users {
 
     public Users() {
     }
+
 }

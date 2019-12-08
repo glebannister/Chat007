@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,8 @@ public class UserListActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference agentsReference;
     private ChildEventListener agentsChildEventListener;
+    private FirebaseStorage avatarStorage;
+    private StorageReference avatarStorageReference;
 
     private ArrayList<Users> usersArrayList;
     private RecyclerView userRecyclerView, allCallSignsRecyclerView;
@@ -54,6 +59,8 @@ public class UserListActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         agentsReference = FirebaseDatabase.getInstance().getReference().child("Agents");
+        avatarStorage = FirebaseStorage.getInstance();
+        avatarStorageReference = avatarStorage.getReference().child("agents_avatars");
 
 
         setWelcomeTitle();
@@ -124,7 +131,7 @@ public class UserListActivity extends AppCompatActivity {
                 Users user = dataSnapshot.getValue(Users.class);
 
                 if (!user.getId().equals(auth.getCurrentUser().getUid())){
-                    user.setAvatarResource(R.drawable.ic_person_black_24dp);
+                    user.getAvatarResource();
                     usersArrayList.add(user);
                     userAdapter.notifyDataSetChanged();
                 }
@@ -181,6 +188,8 @@ public class UserListActivity extends AppCompatActivity {
             case  R.id.agentProfile:
                 startActivity(new Intent(UserListActivity.this, AgentProfileActivity.class));
                 return true;
+                case R.id.about:
+                    startActivity(new Intent(UserListActivity.this, AgenciesActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }
