@@ -39,6 +39,7 @@ public class AgentProfileActivity extends AppCompatActivity {
     private TextView currentAgentName;
     private String agentName;
     private Button setAvatarButton;
+    private Button requestForLocation;
     private static final int IMAGE_PICKER = 124;
 
     private FirebaseDatabase database;
@@ -61,6 +62,7 @@ public class AgentProfileActivity extends AppCompatActivity {
         changeAvatarImageButton = findViewById(R.id.changeAvatarImageButton);
         currentAgentName = findViewById(R.id.currentAgentName);
         setAvatarButton = findViewById(R.id.setAvatarImageButton);
+        requestForLocation = findViewById(R.id.requestForLocation);
 
         getAgentName();
 
@@ -71,6 +73,13 @@ public class AgentProfileActivity extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
                 startActivityForResult(Intent.createChooser(intent,"Choose your image"), IMAGE_PICKER);
+            }
+        });
+
+        requestForLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AgentProfileActivity.this, AgentMapsActivity.class));
             }
         });
 
