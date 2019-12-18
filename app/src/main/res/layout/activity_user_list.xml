@@ -1,69 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".UserListActivity">
     <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/text01"
-            android:textStyle="italic"
-            android:textSize="25sp"
-            android:text="Central Intelligence Agency and MI6"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/spectr"
-            android:layout_marginTop="5dp"
-            app:srcCompat="@drawable/spectr007"
-            android:layout_marginStart="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView1"
         android:layout_width="match_parent"
-        android:layout_height="279dp"
-        android:padding="4dp"
-        android:scrollbars="vertical" />
-
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
-        android:layout_marginStart="45dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-
-        <ImageView
-            android:id="@+id/justImageView"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_group_black_24dp"/>
-
-        <TextView
-            android:id="@+id/justTextView"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="goToAllChat"
-            android:text="All agents Chat "
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"/>
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/text01"
+                android:textStyle="italic"
+                android:textSize="25sp"
+                android:layout_marginStart="5dp"
+                android:text="Central Intelligence Agency and MI6"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/spectr"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/spectr007"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:scrollbars="vertical" />
+
+        <androidx.cardview.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginStart="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/justImageView"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_group_black_24dp"/>
+
+            <TextView
+                android:id="@+id/justTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="goToAllChat"
+                android:text="All agents Chat "
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</ScrollView>

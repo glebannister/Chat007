@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.GridLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -49,8 +51,9 @@ public class UserListActivity extends AppCompatActivity {
     private ArrayList<Users> usersArrayList;
     private RecyclerView userRecyclerView, allCallSignsRecyclerView;
     private UserAdapter userAdapter;
-    private RecyclerView.LayoutManager userLayoutManager;
+    private GridLayoutManager userLayoutManager;
     private String userName;
+    private int columnCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class UserListActivity extends AppCompatActivity {
         avatarStorage = FirebaseStorage.getInstance();
         avatarStorageReference = avatarStorage.getReference().child("agents_avatars");
 
+        columnCount = getResources().getInteger(R.integer.column_count);
 
         setWelcomeTitle();
 
@@ -162,7 +166,7 @@ public class UserListActivity extends AppCompatActivity {
     private void buildRecyclerView() {
         userRecyclerView = findViewById(R.id.recyclerView1);
         userRecyclerView.setHasFixedSize(true);
-        userLayoutManager = new LinearLayoutManager(this);
+        userLayoutManager = new GridLayoutManager(this, columnCount);
 
         userAdapter = new UserAdapter(usersArrayList);
         userRecyclerView.setLayoutManager(userLayoutManager);
