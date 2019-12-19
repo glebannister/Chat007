@@ -170,7 +170,7 @@ public class AgentProfileActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.sing_out_menu, menu);
+        inflater.inflate(R.menu.sing_out_menu_2, menu);
         return true;
     }
 
@@ -179,11 +179,11 @@ public class AgentProfileActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == android.R.id.home){
             NavUtils.navigateUpFromSameTask(this);
-        } else if (id == R.id.signOutMenu){
+        } else if (id == R.id.signOutMenu2){
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(AgentProfileActivity.this, SignInActivity.class));
             return true;
-        } else if (id == R.id.about){
+        } else if (id == R.id.about2){
             startActivity(new Intent(AgentProfileActivity.this, AgenciesActivity.class));
         }
         return super.onOptionsItemSelected(item);

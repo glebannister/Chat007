@@ -18,6 +18,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
@@ -54,6 +55,9 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Button back;
+    private Button backToHome;
+    private Button SOS;
 
     private static final int CHECK_SETTINGS_CODE = 111;
     private static final int REQUEST_LOCATION_PERMISSION = 222 ;
@@ -66,6 +70,7 @@ public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCal
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference locationReference;
+    private DatabaseReference reinforcementRequestReference;
 
 
     private boolean isLocationUpdatesActive = false;
@@ -84,6 +89,11 @@ public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCal
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         locationReference = firebaseDatabase.getReference().child("AgentsLocation");
+        reinforcementRequestReference = firebaseDatabase.getReference().child("ReinforcementRequest");
+
+        back = findViewById(R.id.back);
+        backToHome = findViewById(R.id.backToChat);
+        SOS = findViewById(R.id.reinforcementRequest);
 
         buildLocationRequest();
         buildLocationCallBack();
@@ -267,14 +277,16 @@ public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCal
     private void updateLocationUi() {
 
         if (currentLocation != null){
+
+            Intent intent = getIntent();
+            agentName = intent.getStringExtra("Name");
+
             LatLng currentLatLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
             mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-            mMap.addMarker(new MarkerOptions().position(currentLatLng).title("Your Location"));
+            mMap.addMarker(new MarkerOptions().position(currentLatLng).title("Your Location, " + agentName));
 
             //String currentAgentId = firebaseAuth.getCurrentUser().getUid();
-            Intent intent = getIntent();
-            agentName = intent.getStringExtra("Name");
             GeoFire geoFire = new GeoFire(locationReference);
             geoFire.setLocation(agentName, new GeoLocation(currentLocation.getLatitude(), currentLocation.getLongitude()));
         }
@@ -417,5 +429,25 @@ public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCal
                 Manifest.permission.ACCESS_FINE_LOCATION);
         return permissionState == PackageManager.PERMISSION_GRANTED;
 
+    }
+
+    public void goHome(View view) {
+        startActivity(new Intent(AgentMapsActivity.this, UserListActivity.class));
+    }
+
+    public void JustBack(View view) {
+        startActivity(new Intent(AgentMapsActivity.this, AgentProfileActivity.class));
+    }
+
+    public void saveOurSouls(View view) {
+        if (currentLocation != null){
+            Intent intent = getIntent();
+            agentName = intent.getStringExtra("Name");
+            //String currentAgentId = firebaseAuth.getCurrentUser().getUid();
+            GeoFire geoFire = new GeoFire(reinforcementRequestReference);
+            geoFire.setLocation(agentName, new GeoLocation(currentLocation.getLatitude(), currentLocation.getLongitude()));
+            Toast.makeText(AgentMapsActivity.this, "Reinforcement request sent. Wait..." ,
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }
