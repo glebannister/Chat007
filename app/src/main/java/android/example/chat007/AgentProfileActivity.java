@@ -9,6 +9,8 @@ import androidx.core.app.NavUtils;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -79,7 +81,9 @@ public class AgentProfileActivity extends AppCompatActivity {
         requestForLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AgentProfileActivity.this, AgentMapsActivity.class));
+                Intent intent = new Intent(AgentProfileActivity.this, AgentMapsActivity.class);
+                intent.putExtra("Name", agentName);
+                startActivity(intent);
             }
         });
 
@@ -89,14 +93,9 @@ public class AgentProfileActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home){
-            NavUtils.navigateUpFromSameTask(this);
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
+
+
 
     private void getAgentName(){
         agentChildEventListener = new ChildEventListener() {
@@ -168,5 +167,25 @@ public class AgentProfileActivity extends AppCompatActivity {
     }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.sing_out_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            NavUtils.navigateUpFromSameTask(this);
+        } else if (id == R.id.signOutMenu){
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(AgentProfileActivity.this, SignInActivity.class));
+            return true;
+        } else if (id == R.id.about){
+            startActivity(new Intent(AgentProfileActivity.this, AgenciesActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

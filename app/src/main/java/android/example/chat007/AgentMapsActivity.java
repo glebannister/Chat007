@@ -20,6 +20,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -42,6 +44,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -57,24 +63,33 @@ public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCal
     private LocationSettingsRequest locationSettingsRequest;
     private LocationCallback locationCallback;
     private Location currentLocation;
+    private FirebaseDatabase firebaseDatabase;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference locationReference;
+
 
     private boolean isLocationUpdatesActive = false;
+    private String agentName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         settingsClient = LocationServices.getSettingsClient(this);
         fusedLocationClient = LocationServices
                 .getFusedLocationProviderClient(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        locationReference = firebaseDatabase.getReference().child("AgentsLocation");
+
         buildLocationRequest();
         buildLocationCallBack();
         buildLocationSettingsRequest();
         startLocationUpdates();
+
     }
 
 
@@ -140,12 +155,7 @@ public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCal
                                                                 .ACCESS_COARSE_LOCATION) !=
                                                 PackageManager.PERMISSION_GRANTED) {
                                     // TODO: Consider calling
-                                    //    ActivityCompat#requestPermissions
-                                    // here to request the missing permissions, and then overriding
-                                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                    //                                          int[] grantResults)
-                                    // to handle the case where the user grants the permission. See the documentation
-                                    // for ActivityCompat#requestPermissions for more details.
+
                                     return;
                                 }
                                 fusedLocationClient.requestLocationUpdates(
@@ -262,9 +272,16 @@ public class AgentMapsActivity extends FragmentActivity implements OnMapReadyCal
             mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
             mMap.addMarker(new MarkerOptions().position(currentLatLng).title("Your Location"));
 
+            //String currentAgentId = firebaseAuth.getCurrentUser().getUid();
+            Intent intent = getIntent();
+            agentName = intent.getStringExtra("Name");
+            GeoFire geoFire = new GeoFire(locationReference);
+            geoFire.setLocation(agentName, new GeoLocation(currentLocation.getLatitude(), currentLocation.getLongitude()));
         }
 
     }
+
+
 
     private void buildLocationRequest() {
 
