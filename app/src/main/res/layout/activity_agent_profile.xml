@@ -4,27 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/secret"
     android:orientation="horizontal"
     tools:context=".AgentProfileActivity">
 
     <ImageButton
             android:id="@+id/changeAvatarImageButton"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
+        android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:src="@drawable/ic_person2_black_24dp"
             android:layout_width="135dp"
             android:layout_height="135dp" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/currentAgentName"
             android:text="Default Agent"
             android:textStyle="italic"
-            android:textSize="25dp"
+            android:textSize="30dp"
+            android:textColor="@color/colorPrimary"
             android:layout_marginStart="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
