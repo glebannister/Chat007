@@ -32,6 +32,8 @@ import java.util.ArrayList;
 
 public class UserListActivity extends AppCompatActivity {
 
+
+
     public class UserProfilesTask extends AsyncTask <DatabaseReference, Void, String>{
 
         @Override
@@ -54,6 +56,8 @@ public class UserListActivity extends AppCompatActivity {
     private GridLayoutManager userLayoutManager;
     private String userName;
     private int columnCount;
+
+    private ArrayList<Agencies> agenciesArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,7 +198,7 @@ public class UserListActivity extends AppCompatActivity {
                 return true;
                 case R.id.about:
                     startActivity(new Intent(UserListActivity.this, AgenciesActivity.class));
-            default:
+                   default:
                 return super.onOptionsItemSelected(item);
         }
     }

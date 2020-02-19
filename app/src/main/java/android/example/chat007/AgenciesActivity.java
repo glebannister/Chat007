@@ -32,9 +32,6 @@ public class AgenciesActivity extends AppCompatActivity {
         columnCount = getResources().getInteger(R.integer.column_count);
 
         buildRecyclerView();
-
-
-
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
