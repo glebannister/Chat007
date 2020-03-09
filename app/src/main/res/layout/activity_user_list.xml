@@ -17,7 +17,7 @@
 
             <fragment
                 android:id="@+id/fragment1"
-                android:name="android.example.chat007.AgentFragment"
+                android:name="android.example.chat007.fragments.AgentFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

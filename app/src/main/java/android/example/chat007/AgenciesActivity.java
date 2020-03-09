@@ -4,12 +4,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.example.chat007.adapters.Agencies;
+import android.example.chat007.adapters.AgenciesAdapter;
+import android.example.chat007.data.UTILS;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Adapter;
 
 import java.util.ArrayList;
 

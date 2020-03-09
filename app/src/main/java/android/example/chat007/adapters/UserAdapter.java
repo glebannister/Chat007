@@ -1,14 +1,12 @@
-package android.example.chat007;
+package android.example.chat007.adapters;
 
-import android.content.Context;
+import android.example.chat007.R;
+import android.example.chat007.data.Users;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 

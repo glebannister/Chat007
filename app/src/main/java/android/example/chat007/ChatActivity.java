@@ -5,15 +5,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
-import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.example.chat007.adapters.MessageAdapter;
+import android.example.chat007.data.SecretMessage;
+import android.example.chat007.data.Users;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;

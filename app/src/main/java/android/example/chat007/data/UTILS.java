@@ -1,4 +1,4 @@
-package android.example.chat007;
+package android.example.chat007.data;
 
 public class UTILS {
     public static final String NAME1= "Central Intelligence Agency";

@@ -1,4 +1,4 @@
-package android.example.chat007;
+package android.example.chat007.data;
 
 public class SecretMessage {
 

@@ -1,7 +1,9 @@
-package android.example.chat007;
+package android.example.chat007.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.example.chat007.R;
+import android.example.chat007.data.SecretMessage;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;

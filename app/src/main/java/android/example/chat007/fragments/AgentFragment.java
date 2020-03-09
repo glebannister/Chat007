@@ -1,5 +1,6 @@
-package android.example.chat007;
+package android.example.chat007.fragments;
 
+import android.example.chat007.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

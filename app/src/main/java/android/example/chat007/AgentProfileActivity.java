@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
 import android.content.Intent;
+import android.example.chat007.data.Users;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,11 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.net.URI;
-
-import static android.content.Intent.ACTION_GET_CONTENT;
-import static android.content.Intent.EXTRA_LOCAL_ONLY;
 
 public class AgentProfileActivity extends AppCompatActivity {
     private ImageButton changeAvatarImageButton;

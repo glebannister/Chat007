@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.example.chat007.data.Users;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -73,30 +74,20 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(this, "Input password, agent", Toast.LENGTH_SHORT).show();
                 } else if (emailEditText.getText().toString().equals("")) {
                     Toast.makeText(this, "Input email, agent", Toast.LENGTH_SHORT).show();
-                }  /*else if(nameEditText.getText().toString().equals("")) {
-                    Toast.makeText(this, "Input your Name, agent", Toast.LENGTH_SHORT).show();
-                }*/ else {
+                } else {
                     auth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        //Log.d(Tag, "signInWithEmail:success");
                                         FirebaseUser user = auth.getCurrentUser();
                                         Intent intent = new Intent(SignInActivity.this, UserListActivity.class);
-                                        //intent.putExtra("Name", nameEditText.getText().toString().trim());
                                         startActivity(intent);
-                                        //updateUI(user);
                                     } else {
-                                        // If sign in fails, display a message to the user.
-                                        //Log.w(TAG, "signInWithEmail:failure", task.getException());
                                         Toast.makeText(SignInActivity.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
-                                        //updateUI(null);
                                     }
 
-                                    // ...
                                 }
                             });
                 }
@@ -123,16 +114,11 @@ public class SignInActivity extends AppCompatActivity {
                                         Intent intent = new Intent(SignInActivity.this, UserListActivity.class);
                                         intent.putExtra("Name", nameEditText.getText().toString().trim());
                                         startActivity(intent);
-                                        //updateUI(user);
                                     } else {
-                                        // If sign in fails, display a message to the user.
-                                        //Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                         Toast.makeText(SignInActivity.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
-                                        //updateUI(null);
                                     }
 
-                                    // ...
                                 }
                             });
 
