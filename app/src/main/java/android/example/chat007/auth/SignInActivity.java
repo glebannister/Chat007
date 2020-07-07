@@ -60,7 +60,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-        if(auth.getCurrentUser()!= null){
+        if (auth.getCurrentUser() != null) {
             Intent intent = new Intent(SignInActivity.this, UserListActivity.class);
             //intent.putExtra("Name", nameEditText.getText().toString().trim());
             startActivity(intent);
@@ -68,64 +68,64 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-        private void singUpUser(String email, String password) {
-            if (isLogInActive)
-                if (passwordEditText.getText().toString().trim().length() < 6) {
-                    Toast.makeText(this, "Password must be numbers 6 or more, agent", Toast.LENGTH_LONG).show();
-                } else if (passwordEditText.getText().toString().trim().equals("")) {
-                    Toast.makeText(this, "Input password, agent", Toast.LENGTH_SHORT).show();
-                } else if (emailEditText.getText().toString().equals("")) {
-                    Toast.makeText(this, "Input email, agent", Toast.LENGTH_SHORT).show();
-                } else {
-                    auth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = auth.getCurrentUser();
-                                        Intent intent = new Intent(SignInActivity.this, UserListActivity.class);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(SignInActivity.this, "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-
-                                }
-                            });
-                }
-            else if (!confirmPasswordEditText.getText().toString().trim().equals(passwordEditText.getText().toString().trim())) {
-                Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
-            } else if (passwordEditText.getText().toString().trim().length() < 6) {
-                Toast.makeText(this, "Password must be 6 numbers or more, agent", Toast.LENGTH_LONG).show();
+    private void singUpUser(String email, String password) {
+        if (isLogInActive)
+            if (passwordEditText.getText().toString().trim().length() < 6) {
+                Toast.makeText(this, "Password must be numbers 6 or more, agent", Toast.LENGTH_LONG).show();
             } else if (passwordEditText.getText().toString().trim().equals("")) {
                 Toast.makeText(this, "Input password, agent", Toast.LENGTH_SHORT).show();
             } else if (emailEditText.getText().toString().equals("")) {
                 Toast.makeText(this, "Input email, agent", Toast.LENGTH_SHORT).show();
-            } else if(nameEditText.getText().toString().equals("")) {
-                Toast.makeText(this, "Input your Name, agent", Toast.LENGTH_SHORT).show();
             } else {
-                    auth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        //Log.d(TAG, "createUserWithEmail:success");
-                                        FirebaseUser user = auth.getCurrentUser();
-                                        createUser(user);
-                                        Intent intent = new Intent(SignInActivity.this, UserListActivity.class);
-                                        intent.putExtra("Name", nameEditText.getText().toString().trim());
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(SignInActivity.this, "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = auth.getCurrentUser();
+                                    Intent intent = new Intent(SignInActivity.this, UserListActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(SignInActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
-                            });
 
-                }
+                            }
+                        });
             }
+        else if (!confirmPasswordEditText.getText().toString().trim().equals(passwordEditText.getText().toString().trim())) {
+            Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+        } else if (passwordEditText.getText().toString().trim().length() < 6) {
+            Toast.makeText(this, "Password must be 6 numbers or more, agent", Toast.LENGTH_LONG).show();
+        } else if (passwordEditText.getText().toString().trim().equals("")) {
+            Toast.makeText(this, "Input password, agent", Toast.LENGTH_SHORT).show();
+        } else if (emailEditText.getText().toString().equals("")) {
+            Toast.makeText(this, "Input email, agent", Toast.LENGTH_SHORT).show();
+        } else if (nameEditText.getText().toString().equals("")) {
+            Toast.makeText(this, "Input your Name, agent", Toast.LENGTH_SHORT).show();
+        } else {
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                //Log.d(TAG, "createUserWithEmail:success");
+                                FirebaseUser user = auth.getCurrentUser();
+                                createUser(user);
+                                Intent intent = new Intent(SignInActivity.this, UserListActivity.class);
+                                intent.putExtra("Name", nameEditText.getText().toString().trim());
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(SignInActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
+
+        }
+    }
 
 
     private void createUser(FirebaseUser firebaseUser) {
@@ -138,7 +138,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void changeSingInUp(View view) {
-        if (isLogInActive){
+        if (isLogInActive) {
             isLogInActive = false;
             singInButton.setText("Sign Up");
             toggleTextView.setText("Click to Log Ip");
@@ -154,7 +154,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void changeAgent(View view) {
-        if (isBondActive){
+        if (isBondActive) {
             ImageView bondImageView = findViewById(R.id.singInImageView);
             bondImageView.animate().alpha(0).setDuration(2000);
 

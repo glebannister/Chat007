@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.example.chat007.R;
 import android.example.chat007.adapters.MessageAdapter;
@@ -60,6 +61,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference secretImagesStorageReference;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -57,6 +58,7 @@ public class UserListActivity extends AppCompatActivity {
     private UserAdapter userAdapter;
     private GridLayoutManager userLayoutManager;
     private String userName;
+    private TextView nameTextView;
     private int columnCount;
 
     private ArrayList<Agencies> agenciesArrayList;
@@ -73,12 +75,14 @@ public class UserListActivity extends AppCompatActivity {
 
         columnCount = getResources().getInteger(R.integer.column_count);
 
-        setWelcomeTitle();
+        nameTextView = findViewById(R.id.text01);
+
+        setAgentName();
 
         Intent intent = getIntent();
         if (intent!= null){
             userName =  intent.getStringExtra("Name");
-            setTitle("Welcome "+ intent.getStringExtra("Name"));
+            nameTextView.setText("Welcome "+ userName);
         }
 
         usersArrayList = new ArrayList<>();
@@ -100,13 +104,13 @@ public class UserListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void setWelcomeTitle(){
+    private void setAgentName(){
         agentsChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Users users = dataSnapshot.getValue(Users.class);
                 if (users.getId().equals(auth.getCurrentUser().getUid())){
-                    setTitle("Welcome " +  users.getName());
+                    nameTextView.setText("Welcome " +  users.getName());
                     userName = users.getName();
                 }
             }
