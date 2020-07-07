@@ -1,4 +1,4 @@
-package android.example.chat007.adapters;
+package android.example.chat007.data;
 
 public class Agencies {
     private String name;

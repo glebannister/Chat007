@@ -1,10 +1,12 @@
-package android.example.chat007;
+package android.example.chat007.info;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
 import android.content.Intent;
+import android.example.chat007.R;
+import android.example.chat007.chat.UserListActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;

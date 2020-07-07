@@ -1,8 +1,9 @@
-package android.example.chat007;
+package android.example.chat007.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.example.chat007.R;
 import android.os.Bundle;
 
 public class LoadScreenActivity extends AppCompatActivity {

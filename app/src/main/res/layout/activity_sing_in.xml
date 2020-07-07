@@ -1,76 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity">
+    tools:context=".auth.SignInActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/singInImageView"
-        android:layout_width="357dp"
-        android:layout_height="183dp"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
         android:onClick="changeAgent"
-        app:srcCompat="@drawable/spectr" />
+        app:srcCompat="@drawable/spectr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"/>
 
-        <ImageView
-            android:id="@+id/singInImageView2"
-            android:layout_width="357dp"
-            android:layout_height="183dp"
-            android:alpha="0"
-            app:srcCompat="@drawable/stetham"/>
+    <ImageView
+        android:id="@+id/singInImageView2"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:alpha="0"
+        app:srcCompat="@drawable/stetham"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"/>
 
-    </RelativeLayout>
 
     <EditText
         android:id="@+id/emailEditText"
         android:hint="Your Email"
         android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/singInImageView"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"/>
 
     <EditText
         android:id="@+id/passwordEditText"
         android:hint="Your Password"
         android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"/>
 
     <EditText
         android:id="@+id/confirmPasswordEditText"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"/>
 
     <EditText
         android:id="@+id/nameEditText"
         android:hint="Your Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/confirmPasswordEditText"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline4"/>
     <Button
         android:id="@+id/singInButton"
-        android:layout_marginStart="120dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SING UP"/>
+        android:text="SING UP"
+        app:layout_constraintTop_toBottomOf="@id/nameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/toggleTextView"
         android:clickable="true"
         android:onClick="changeSingInUp"
         android:text="Click To Log In"
-        android:layout_marginStart="115dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/singInButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

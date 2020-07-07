@@ -31,23 +31,23 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".AgentMapsActivity"
+            android:name=".profile.AgentMapsActivity"
             android:label="@string/title_activity_agent_maps"></activity>
         <activity
-            android:name=".InfoActivity"
-            android:parentActivityName=".AgenciesActivity">
+            android:name=".info.InfoActivity"
+            android:parentActivityName=".info.AgenciesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AgenciesActivity" />
+                android:value=".info.AgenciesActivity" />
         </activity>
         <activity
-            android:name=".AgenciesActivity"
-            android:parentActivityName=".UserListActivity">
+            android:name=".info.AgenciesActivity"
+            android:parentActivityName=".chat.UserListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserListActivity" />
+                android:value=".chat.UserListActivity" />
         </activity>
-        <activity android:name=".LoadScreenActivity">
+        <activity android:name=".auth.LoadScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,28 +55,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AgentProfileActivity"
-            android:parentActivityName=".UserListActivity">
+            android:name=".profile.AgentProfileActivity"
+            android:parentActivityName=".chat.UserListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserListActivity" />
+                android:value=".chat.UserListActivity" />
         </activity>
         <activity
-            android:name=".AllChatActivity"
-            android:parentActivityName=".UserListActivity">
+            android:name=".chat.AllChatActivity"
+            android:parentActivityName=".chat.UserListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserListActivity" />
+                android:value=".chat.UserListActivity" />
         </activity>
-        <activity android:name=".UserListActivity" />
+        <activity android:name=".chat.UserListActivity" />
         <activity
-            android:name=".ChatActivity"
-            android:parentActivityName=".UserListActivity">
+            android:name=".chat.ChatActivity"
+            android:parentActivityName=".chat.UserListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserListActivity" />
+                android:value=".chat.UserListActivity" />
         </activity>
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".auth.SignInActivity" />
     </application>
 
 </manifest>

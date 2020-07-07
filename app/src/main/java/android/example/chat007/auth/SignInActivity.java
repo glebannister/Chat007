@@ -1,9 +1,11 @@
-package android.example.chat007;
+package android.example.chat007.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.example.chat007.R;
+import android.example.chat007.chat.UserListActivity;
 import android.example.chat007.data.Users;
 import android.os.Bundle;
 import android.view.View;

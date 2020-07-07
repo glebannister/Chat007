@@ -2,8 +2,9 @@ package android.example.chat007.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.example.chat007.InfoActivity;
+import android.example.chat007.info.InfoActivity;
 import android.example.chat007.R;
+import android.example.chat007.data.Agencies;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

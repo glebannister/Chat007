@@ -1,4 +1,4 @@
-package android.example.chat007;
+package android.example.chat007.chat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
 import android.content.Intent;
+import android.example.chat007.R;
 import android.example.chat007.adapters.MessageAdapter;
 import android.example.chat007.data.SecretMessage;
 import android.example.chat007.data.Users;

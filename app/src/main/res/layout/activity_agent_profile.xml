@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/secret"
     android:orientation="horizontal"
-    tools:context=".AgentProfileActivity">
+    tools:context=".profile.AgentProfileActivity">
 
     <ImageButton
             android:id="@+id/changeAvatarImageButton"

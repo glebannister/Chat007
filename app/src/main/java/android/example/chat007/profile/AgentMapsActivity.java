@@ -1,4 +1,4 @@
-package android.example.chat007;
+package android.example.chat007.profile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,11 +6,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.example.chat007.R;
+import android.example.chat007.chat.UserListActivity;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.firebase.geofire.BuildConfig;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.api.ApiException;
@@ -46,9 +48,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

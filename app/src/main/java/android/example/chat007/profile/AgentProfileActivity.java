@@ -1,4 +1,4 @@
-package android.example.chat007;
+package android.example.chat007.profile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,7 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 
 import android.content.Intent;
+import android.example.chat007.R;
+import android.example.chat007.auth.SignInActivity;
 import android.example.chat007.data.Users;
+import android.example.chat007.info.AgenciesActivity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;

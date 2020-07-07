@@ -1,4 +1,4 @@
-package android.example.chat007;
+package android.example.chat007.info;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,8 @@ import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.example.chat007.adapters.Agencies;
+import android.example.chat007.R;
+import android.example.chat007.data.Agencies;
 import android.example.chat007.adapters.AgenciesAdapter;
 import android.example.chat007.data.UTILS;
 import android.os.Bundle;

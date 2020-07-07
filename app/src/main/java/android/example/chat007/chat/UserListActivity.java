@@ -1,4 +1,4 @@
-package android.example.chat007;
+package android.example.chat007.chat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.example.chat007.adapters.Agencies;
+import android.example.chat007.R;
+import android.example.chat007.auth.SignInActivity;
+import android.example.chat007.data.Agencies;
 import android.example.chat007.adapters.UserAdapter;
 import android.example.chat007.data.Users;
+import android.example.chat007.info.AgenciesActivity;
+import android.example.chat007.profile.AgentProfileActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
