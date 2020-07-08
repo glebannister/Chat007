@@ -42,42 +42,37 @@ public class AllChatActivity extends AppCompatActivity {
 
     private static final int CONSTANT = 123;
 
-    private ListView messageListView2;
     private MessageAdapter adapter;
-    private ImageButton sendImageButton2;
     private Button sendMessageButton2;
     private EditText editText2;
     private String userName2;
 
-    private FirebaseDatabase database;
     private FirebaseAuth auth;
-    private DatabaseReference messagesReference, agentsReference;
-    private ChildEventListener messagesChildEventListener, agentsChildEventListener;
-    private FirebaseStorage storage;
+    private DatabaseReference messagesReference;
     private StorageReference secretImagesStorageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_chat);
+        setContentView(R.layout.activity_chat);
 
-        database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         messagesReference = database.getReference().child("secretMessagesAllChat");
-        agentsReference = database.getReference().child("Agents");
-        messageListView2 = findViewById(R.id.listView2);
+        DatabaseReference agentsReference = database.getReference().child("Agents");
+        ListView messageListView2 = findViewById(R.id.listView);
         final List<SecretMessage> secretMessages = new ArrayList<>();
         adapter = new MessageAdapter(this, R.layout.messega_item2, secretMessages);
         messageListView2.setAdapter(adapter);
 
         auth = FirebaseAuth.getInstance();
-        storage = FirebaseStorage.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         secretImagesStorageReference = storage.getReference().child("secret_images");
 
-        sendImageButton2 = findViewById(R.id.sendImageButton2);
-        sendMessageButton2 = findViewById(R.id.sendButton2);
-        editText2 = findViewById(R.id.sendEditText2);
+        ImageButton sendImageButton2 = findViewById(R.id.sendImageButton);
+        sendMessageButton2 = findViewById(R.id.sendButton);
+        editText2 = findViewById(R.id.sendEditText);
 
-        agentsChildEventListener = new ChildEventListener() {
+        ChildEventListener agentsChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Users users = dataSnapshot.getValue(Users.class);
@@ -161,7 +156,7 @@ public class AllChatActivity extends AppCompatActivity {
             }
         });
 
-        messagesChildEventListener = new ChildEventListener() {
+        ChildEventListener messagesChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 SecretMessage secretMessage = dataSnapshot.getValue(SecretMessage.class);
@@ -231,8 +226,6 @@ public class AllChatActivity extends AppCompatActivity {
                             messagesReference.push().setValue(secretMessage);
 
                         } else {
-                            // Handle failures
-                            // ...
                         }
                     }
                 });

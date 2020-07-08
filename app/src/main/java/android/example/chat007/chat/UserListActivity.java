@@ -109,6 +109,7 @@ public class UserListActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Users users = dataSnapshot.getValue(Users.class);
+                assert users != null;
                 if (users.getId().equals(auth.getCurrentUser().getUid())){
                     nameTextView.setText("Welcome " +  users.getName());
                     userName = users.getName();

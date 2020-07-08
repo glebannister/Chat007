@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,27 +10,45 @@
     <fragment
         android:id="@+id/fragment1"
         android:name="android.example.chat007.fragments.AgentFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:visibility="visible"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/fragment1"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintEnd_toStartOf="@id/guideline2" />
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_above="@+id/linearLayout2"
-        android:layout_below="@+id/fragment1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:divider="@android:color/transparent"
         android:transcriptMode="alwaysScroll"
-        tools:listitem="@layout/message_item" />
+        tools:listitem="@layout/message_item"
+        app:layout_constraintTop_toBottomOf="@id/fragment1"
+        app:layout_constraintBottom_toTopOf="@id/guideline3"
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/listView">
 
         <ImageButton
             android:id="@+id/sendImageButton"
@@ -52,5 +71,26 @@
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
 
-</RelativeLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
