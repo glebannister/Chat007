@@ -32,7 +32,6 @@ public class SignInActivity extends AppCompatActivity {
     private Button singInButton;
     private TextView toggleTextView;
 
-    private FirebaseDatabase database;
     private DatabaseReference agentsReference;
 
 
@@ -42,7 +41,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sing_in);
 
         auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         agentsReference = database.getReference().child("Agents");
 
         emailEditText = findViewById(R.id.emailEditText);
@@ -140,14 +139,14 @@ public class SignInActivity extends AppCompatActivity {
     public void changeSingInUp(View view) {
         if (isLogInActive) {
             isLogInActive = false;
-            singInButton.setText("Sign Up");
-            toggleTextView.setText("Click to Log Ip");
+            singInButton.setText(R.string.Sign_Up);
+            toggleTextView.setText(R.string.Click);
             confirmPasswordEditText.setVisibility(View.VISIBLE);
             nameEditText.setVisibility(View.VISIBLE);
         } else {
             isLogInActive = true;
-            singInButton.setText("Sign In");
-            toggleTextView.setText("Click to Sign Up");
+            singInButton.setText(R.string.Sign_In);
+            toggleTextView.setText(R.string.ClickUp);
             confirmPasswordEditText.setVisibility(View.GONE);
             nameEditText.setVisibility(View.GONE);
         }

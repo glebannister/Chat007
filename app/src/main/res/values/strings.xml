@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">/Chat007/</string>
     <string name="title_activity_agent_maps">Map</string>
+    <string name="Email">Your Email</string>
+    <string name="Password">Your Password</string>
+    <string name="Confirm">Confirm Password</string>
+    <string name="Name">Your Name</string>
+    <string name="Sign_Up">SING UP</string>
+    <string name="Sign_In">SING IN</string>
+    <string name="Click">Click To Log In</string>
+    <string name="ClickUp">Click To Sign Up</string>
+    <string name="All_chat">All agents Chat</string>
+    <string name="Welcome">Welcome</string>
+    <string name="SEND">SEND</string>
+    <string name="Set_Avatar">Click to set Avatar</string>
+    <string name="Default">Default Agent</string>
+    <string name="Find">Find me</string>
 </resources>

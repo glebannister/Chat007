@@ -44,21 +44,15 @@ public class ChatActivity extends AppCompatActivity {
 
     private static final int CONSTANT = 123;
 
-    private ListView messageListView;
     private MessageAdapter adapter;
-    private ImageButton sendImageButton;
     private Button sendMessageButton;
     private EditText editText;
     private String userName;
     private String recipientUserId;
-    private TextView nameWithTextview;
     private String recipientUserName;
 
-    private FirebaseDatabase database;
     private FirebaseAuth auth;
-    private DatabaseReference messagesReference, agentsReference;
-    private ChildEventListener messagesChildEventListener, agentsChildEventListener;
-    private FirebaseStorage storage;
+    private DatabaseReference messagesReference;
     private StorageReference secretImagesStorageReference;
 
     @SuppressLint("SetTextI18n")
@@ -68,30 +62,30 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
 
-
-        database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         messagesReference = database.getReference().child("secretMessages");
-        agentsReference = database.getReference().child("Agents");
-        messageListView = findViewById(R.id.listView);
+        DatabaseReference agentsReference = database.getReference().child("Agents");
+        ListView messageListView = findViewById(R.id.listView);
         final List<SecretMessage> secretMessages = new ArrayList<>();
         adapter = new MessageAdapter(this, R.layout.message_item, secretMessages);
         messageListView.setAdapter(adapter);
 
         auth = FirebaseAuth.getInstance();
-        storage = FirebaseStorage.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         secretImagesStorageReference = storage.getReference().child("secret_images");
 
-        sendImageButton = findViewById(R.id.sendImageButton);
+        ImageButton sendImageButton = findViewById(R.id.sendImageButton);
         sendMessageButton = findViewById(R.id.sendButton);
         editText = findViewById(R.id.sendEditText);
-        nameWithTextview = findViewById(R.id.text01);
+        TextView nameWithTextview = findViewById(R.id.text01);
 
 
-        agentsChildEventListener = new ChildEventListener() {
+        ChildEventListener agentsChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Users users = dataSnapshot.getValue(Users.class);
-                if (users.getId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                assert users != null;
+                if (users.getId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                     userName = users.getName();
                 }
             }
@@ -115,7 +109,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        }; agentsReference.addChildEventListener(agentsChildEventListener);
+        };
+        agentsReference.addChildEventListener(agentsChildEventListener);
 
 
         Intent intent = getIntent();
@@ -178,15 +173,16 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        messagesChildEventListener = new ChildEventListener() {
+        ChildEventListener messagesChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 SecretMessage secretMessage = dataSnapshot.getValue(SecretMessage.class);
+                assert secretMessage != null;
                 if
-                (secretMessage.getSender()!= null && secretMessage.getSender().equals(auth.getCurrentUser().getUid())&&
-                secretMessage.getRecipient().equals(recipientUserId) || secretMessage.getRecipient()!= null
+                (secretMessage.getSender() != null && secretMessage.getSender().equals(auth.getCurrentUser().getUid()) &&
+                        secretMessage.getRecipient().equals(recipientUserId) || secretMessage.getRecipient() != null
                         && secretMessage.getRecipient().equals(auth.getCurrentUser().getUid()) &&
-                        secretMessage.getSender().equals(recipientUserId)){
+                        secretMessage.getSender().equals(recipientUserId)) {
                     adapter.add(secretMessage);
                 }
             }
@@ -210,7 +206,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        }; messagesReference.addChildEventListener(messagesChildEventListener);
+        };
+        messagesReference.addChildEventListener(messagesChildEventListener);
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null){

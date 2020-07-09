@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.example.chat007.R;
 import android.example.chat007.auth.SignInActivity;
@@ -50,11 +51,10 @@ public class UserListActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference agentsReference;
     private ChildEventListener agentsChildEventListener;
-    private FirebaseStorage avatarStorage;
     private StorageReference avatarStorageReference;
 
     private ArrayList<Users> usersArrayList;
-    private RecyclerView userRecyclerView, allCallSignsRecyclerView;
+    private RecyclerView allCallSignsRecyclerView;
     private UserAdapter userAdapter;
     private GridLayoutManager userLayoutManager;
     private String userName;
@@ -63,6 +63,7 @@ public class UserListActivity extends AppCompatActivity {
 
     private ArrayList<Agencies> agenciesArrayList;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +71,7 @@ public class UserListActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         agentsReference = FirebaseDatabase.getInstance().getReference().child("Agents");
-        avatarStorage = FirebaseStorage.getInstance();
+        FirebaseStorage avatarStorage = FirebaseStorage.getInstance();
         avatarStorageReference = avatarStorage.getReference().child("agents_avatars");
 
         columnCount = getResources().getInteger(R.integer.column_count);
@@ -78,12 +79,6 @@ public class UserListActivity extends AppCompatActivity {
         nameTextView = findViewById(R.id.text01);
 
         setAgentName();
-
-        Intent intent = getIntent();
-        if (intent!= null){
-            userName =  intent.getStringExtra("Name");
-            nameTextView.setText("Welcome "+ userName);
-        }
 
         usersArrayList = new ArrayList<>();
         new UserProfilesTask().execute();
@@ -106,13 +101,14 @@ public class UserListActivity extends AppCompatActivity {
 
     private void setAgentName(){
         agentsChildEventListener = new ChildEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Users users = dataSnapshot.getValue(Users.class);
                 assert users != null;
                 if (users.getId().equals(auth.getCurrentUser().getUid())){
-                    nameTextView.setText("Welcome " +  users.getName());
                     userName = users.getName();
+                    nameTextView.setText("Welcome " + users.getName());
                 }
             }
 
@@ -175,7 +171,7 @@ public class UserListActivity extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        userRecyclerView = findViewById(R.id.recyclerView1);
+        RecyclerView userRecyclerView = findViewById(R.id.recyclerView1);
         userRecyclerView.setHasFixedSize(true);
         userLayoutManager = new GridLayoutManager(this, columnCount);
 

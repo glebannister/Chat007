@@ -37,6 +37,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AllChatActivity extends AppCompatActivity {
 
@@ -102,10 +103,6 @@ public class AllChatActivity extends AppCompatActivity {
         };
         agentsReference.addChildEventListener(agentsChildEventListener);
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            userName2 = intent.getStringExtra("Name");
-        }
 
         editText2.addTextChangedListener(new TextWatcher() {
             @Override
@@ -197,19 +194,21 @@ public class AllChatActivity extends AppCompatActivity {
         protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == CONSTANT && resultCode == RESULT_OK){
+                assert data != null;
                 Uri selectedImageUri = data.getData();
+                assert selectedImageUri != null;
                 final StorageReference imageReference =
-                        secretImagesStorageReference.child(selectedImageUri.getLastPathSegment());
+                        secretImagesStorageReference.child("images/" + selectedImageUri.getLastPathSegment());
 
                 UploadTask uploadTask = imageReference.putFile(selectedImageUri);
 
-                uploadTask = imageReference.putFile(selectedImageUri);
+                //uploadTask = imageReference.putFile(selectedImageUri);
 
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                         if (!task.isSuccessful()) {
-                            throw task.getException();
+                            throw Objects.requireNonNull(task.getException());
                         }
 
                         // Continue with the task to get the download URL
@@ -222,10 +221,9 @@ public class AllChatActivity extends AppCompatActivity {
                             Uri selectedImageUri = task.getResult();
                             SecretMessage secretMessage = new SecretMessage();
                             secretMessage.setName(userName2);
+                            assert selectedImageUri != null;
                             secretMessage.setMessageUrl(selectedImageUri.toString());
                             messagesReference.push().setValue(secretMessage);
-
-                        } else {
                         }
                     }
                 });
